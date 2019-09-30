@@ -3,7 +3,7 @@ FROM php:5.6-apache
 RUN a2enmod rewrite expires
 
 # install the PHP extensions we need
-RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev libkrb5-dev \
+RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libkrb5-dev \
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
     && docker-php-ext-install gd mysqli \
     && apt-get -y install libssl-dev libc-client2007e-dev libkrb5-dev \
@@ -30,6 +30,8 @@ RUN { \
         echo 'opcache.fast_shutdown=1'; \
         echo 'opcache.enable_cli=1'; \
     } > /usr/local/etc/php/conf.d/opcache-recommended.ini
+
+VOLUME /var/www/html
 
 WORKDIR /var/www/html
 

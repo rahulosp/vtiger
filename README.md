@@ -1,5 +1,5 @@
 #### BUILD IMAGE:
-
+This is a for of https://github.com/pimuzzo/vtiger. To allow mount of a volume on to the directory /var/www/html. The image is being presently used for deploying a Vtiger solution on Kubernetes. All the components of kubernetes are in HA, MariaDB is in HA, and using this image Vtiger also can now be deployed in HA.
 You can choose between:
 
 ##### 1) Build from Dockerfile:
@@ -25,4 +25,4 @@ Then run Vtiger container:
 
 #### CONFIGURATION:
 
-Follow the steps: [http://localhost/vtigercrm](http://localhost/vtigercrm)
+Follow the steps: [http://localhost/vtigercrm](http://<your_ip_address>/vtigercrm)
