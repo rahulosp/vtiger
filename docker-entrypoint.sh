@@ -26,6 +26,8 @@ then
     echo "Directory /var/www/html/vtigercrm exists."
 else
     echo "Error: Directory /var/www/html/vtigercrm does not exists. Trying to create the directory with new data"
+    echo "Creating directory /var/www/html/vtigercrm"
+    mkdir -p /var/www/html/vtigercrm
     cp -rf /usr/src/vtigercrm/* /var/www/html/vtigercrm/
     cd /var/www/html/
     chmod -R 775 vtigercrm
