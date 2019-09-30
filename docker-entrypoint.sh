@@ -29,9 +29,11 @@ else
     echo "Creating directory /var/www/html/vtigercrm"
     mkdir -p /var/www/html/vtigercrm
     cp -rf /usr/src/vtigercrm/* /var/www/html/vtigercrm/
+    echo "Directory /var/www/html/vtigercrm created and data copied, Applying correct permissions."
     cd /var/www/html/
     chmod -R 775 vtigercrm
     chown -R www-data:www-data vtigercrm
+    echo "Permissions applied on /var/www/html/vtigercrm. Good to use now."
 fi
 
 ###End of vtiger data block######################
