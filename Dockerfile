@@ -48,7 +48,7 @@ COPY vtiger.crt /etc/apache2/certs/
 COPY vtiger.key /etc/apache2/certs/
 RUN chmod 400 /etc/apache2/certs/vtiger.key
 COPY vtiger-ssl.conf /etc/apache2/sites-available/
-RUN a2enmod ssl && a2ensite vtiger-ssl && a2dissite 000-default
+RUN a2enmod ssl && a2ensite vtiger-ssl
 ###Creation of TLS encrypted vtiger site terminates here.
 
 COPY docker-entrypoint.sh /entrypoint.sh
