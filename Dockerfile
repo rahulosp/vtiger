@@ -36,8 +36,9 @@ VOLUME /var/www/html
 WORKDIR /var/www/html
 
 RUN curl -o vtigercrm.tar.gz -SL http://sourceforge.net/projects/vtigercrm/files/vtiger%20CRM%206.4.0/Core%20Product/vtigercrm6.4.0.tar.gz \
-    && tar -xzf vtigercrm.tar.gz \
+    && tar -xzf vtigercrm.tar.gz -C /usr/src/ \
     && rm vtigercrm.tar.gz \
+    && cd /usr/src/ \
     && chmod -R 775 vtigercrm \
     && chown -R www-data:www-data vtigercrm
 
