@@ -39,6 +39,9 @@ else
     echo "Permissions applied on /var/www/html/vtigercrm. Good to use now."
 fi
 
+#Modification du vhost par défaut
+echo -e "<VirtualHost *:80>\n\tDocumentRoot /var/www/html/vtigercrm\n\n\tErrorLog /var/log/apache2/error-vtiger.log\n\tLogLevel warn\n\tCustomLog /var/log/apache2/access-vtiger.log combined\n</VirtualHost>" > /etc/apache2/sites-available/000-default.conf
+
 ###End of vtiger data block######################
 sed -i "s/\$defaultParameters\['db_hostname'\]/'"${DB_HOSTNAME}"'/" vtigercrm/modules/Install/views/Index.php
 sed -i "s/\$defaultParameters\['db_username'\]/'"${DB_USERNAME}"'/" vtigercrm/modules/Install/views/Index.php
