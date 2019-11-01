@@ -35,12 +35,21 @@ VOLUME /var/www/html
 
 WORKDIR /var/www/html
 
-RUN curl -o vtigercrm.tar.gz -SL http://sourceforge.net/projects/vtigercrm/files/vtiger%20CRM%206.4.0/Core%20Product/vtigercrm6.4.0.tar.gz \
-    && tar -xzf vtigercrm.tar.gz -C /usr/src/ \
-    && rm vtigercrm.tar.gz \
-    && cd /usr/src/ \
-    && chmod -R 775 vtigercrm \
-    && chown -R www-data:www-data vtigercrm
+#RUN curl -o vtigercrm.tar.gz -SL http://sourceforge.net/projects/vtigercrm/files/vtiger%20CRM%206.4.0/Core%20Product/vtigercrm6.4.0.tar.gz \
+#    && tar -xzf vtigercrm.tar.gz -C /usr/src/ \
+#    && rm vtigercrm.tar.gz \
+#    && cd /usr/src/ \
+#    && chmod -R 775 vtigercrm \
+#    && chown -R www-data:www-data vtigercrm
+
+###Create TLS encryption on website, use HTTPS. Copy certificates and write apache ssl conf file
+RUN mkdir -p /etc/apache2/certs
+COPY vtiger.crt /etc/apache2/certs/
+COPY vtiger.key /etc/apache2/certs/
+RUN chmod 400 /etc/apache2/certs/vtiger.key
+COPY vtiger-ssl.conf /etc/apache2/sites-available/
+RUN a2enmod ssl && a2ensite vtiger-ssl
+###Creation of TLS encrypted vtiger site terminates here.
 
 COPY docker-entrypoint.sh /entrypoint.sh
 

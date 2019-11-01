@@ -28,7 +28,10 @@ else
     echo "Error: Directory /var/www/html/vtigercrm does not exists. Trying to create the directory with new data"
     echo "Creating directory /var/www/html/vtigercrm"
     mkdir -p /var/www/html/vtigercrm
-    cp -rf /usr/src/vtigercrm/* /var/www/html/vtigercrm/
+    echo "Directory created downloading and copying code"
+    curl -o vtigercrm.tar.gz -SL http://sourceforge.net/projects/vtigercrm/files/vtiger%20CRM%206.4.0/Core%20Product/vtigercrm6.4.0.tar.gz
+    tar -xzf vtigercrm.tar.gz -C /var/www/html/
+    rm vtigercrm.tar.gz
     echo "Directory /var/www/html/vtigercrm created and data copied, Applying correct permissions."
     cd /var/www/html/
     chmod -R 775 vtigercrm
