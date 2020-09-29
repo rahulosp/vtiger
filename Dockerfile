@@ -3,7 +3,7 @@ FROM php:5.6-apache
 RUN a2enmod rewrite expires
 
 # install the PHP extensions we need
-RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libkrb5-dev \
+RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libkrb5-dev vim\
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
     && docker-php-ext-install gd mysqli \
     && apt-get -y install libssl-dev libc-client2007e-dev libkrb5-dev \
@@ -43,12 +43,12 @@ WORKDIR /var/www/html
 #    && chown -R www-data:www-data vtigercrm
 
 ###Create TLS encryption on website, use HTTPS. Copy certificates and write apache ssl conf file
-RUN mkdir -p /etc/apache2/certs
-COPY vtiger.crt /etc/apache2/certs/
-COPY vtiger.key /etc/apache2/certs/
-RUN chmod 400 /etc/apache2/certs/vtiger.key
-COPY vtiger-ssl.conf /etc/apache2/sites-available/
-RUN a2enmod ssl && a2ensite vtiger-ssl
+#RUN mkdir -p /etc/apache2/certs
+#COPY vtiger.crt /etc/apache2/certs/
+#COPY vtiger.key /etc/apache2/certs/
+#RUN chmod 400 /etc/apache2/certs/vtiger.key
+#COPY vtiger-ssl.conf /etc/apache2/sites-available/
+#RUN a2enmod ssl && a2ensite vtiger-ssl
 ###Creation of TLS encrypted vtiger site terminates here.
 
 COPY docker-entrypoint.sh /entrypoint.sh
